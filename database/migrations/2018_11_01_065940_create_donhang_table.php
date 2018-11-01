@@ -16,11 +16,11 @@ class CreateDonhangTable extends Migration
         Schema::create('donhang', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->bigInteger('dh_ma')
+            $table->unsignedBigInteger('dh_ma')
                 ->autoIncrement()
                 ->comment('Ma don hang');
             
-            $table->bigInteger('kh_ma')
+            $table->unsignedBigInteger('kh_ma')
                 ->comment('Ma don hang');
 
             $table->dateTime('dh_thoiGianDatHang')
@@ -49,7 +49,7 @@ class CreateDonhangTable extends Migration
             $table->unsignedInteger('dh_daThanhToan')
                 ->default('0');
             
-            $table->smallInteger('nv_xuly')
+            $table->unsignedSmallInteger('nv_xuly')
                 ->default('1')
                 ->comment('Nhan vien xu ly don hang');
             
@@ -58,7 +58,7 @@ class CreateDonhangTable extends Migration
                 ->default('NULL')
                 ->comment('Ngay xu ly don hang');
 
-            $table->smallInteger('nv_giaohang')
+            $table->unsignedSmallInteger('nv_giaohang')
                 ->default('1')
                 ->comment('Nhan vien giao hang');
 

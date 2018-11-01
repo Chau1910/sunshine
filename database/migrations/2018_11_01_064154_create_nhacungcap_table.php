@@ -16,7 +16,7 @@ class CreateNhacungcapTable extends Migration
         Schema::create('nhacungcap', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->smallInteger('ncc_ma')
+            $table->unsignedSmallInteger('ncc_ma')
                 ->autoIncrement()
                 ->comment('Ma nha cung cap');
 
@@ -47,7 +47,7 @@ class CreateNhacungcapTable extends Migration
                 ->default('2')
                 ->comment('Trang thai: 1:khoa, 2:kha dung');
 
-            $table->smallInteger('xx_ma')
+            $table->unsignedSmallInteger('xx_ma')
                 ->comment('ma xuat xu');
 
             $table->unique('ncc_ten');

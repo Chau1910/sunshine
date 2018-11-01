@@ -16,7 +16,7 @@ class CreateHinhanhTable extends Migration
         Schema::create('hinhanh', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->bigInteger('sp_ma')
+            $table->unsignedBigInteger('sp_ma')
                 ->comment('Ma san pham');
             $table->unsignedInteger('ha_stt')
                 ->default('1');
