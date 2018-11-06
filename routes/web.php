@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
 use App\Loai;
 
 Route::get('/danhsachloai',function(){
@@ -28,6 +29,7 @@ Route::get('/danhsachloai',function(){
     $json = json_encode($ds_loai);
     return $json;
 });
+*/
 use App\ChuDe;
 
 Route::get('/danhsachchude',function(){
@@ -41,3 +43,8 @@ Route::get('/danhsachchude',function(){
     return $json;
 
 });
+
+//tencontroller@action
+Route::get('/admin/danhsachloai', 'LoaiController@index')->name('danhsachloai.index');
+
+Route::get('/admin/danhsachchude', 'ChuDeController@index')->name('danhsachchude.index');

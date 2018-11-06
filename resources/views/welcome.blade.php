@@ -79,9 +79,16 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Tran Thi Cam Chau
+                    Shop Bông
                 </div>
-
+                
+                <div>
+                    <a href="{{ route('danhsachloai.index') }}">Danh sach loai hoa</a>
+                </div>
+                
+                <div>
+                    <a href="{{ route('danhsachchude.index') }}">Danh sach chu de</a>
+                </div>
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>

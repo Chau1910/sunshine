@@ -55,7 +55,6 @@ class CreateDonhangTable extends Migration
             
             $table->dateTime('dh_ngayXuLy')
                 ->nullable()
-                ->default('NULL')
                 ->comment('Ngay xu ly don hang');
 
             $table->unsignedSmallInteger('nv_giaohang')

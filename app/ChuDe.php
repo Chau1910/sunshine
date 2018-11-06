@@ -11,7 +11,7 @@ class ChuDe extends Model
 
     protected $table       = 'chude';
     protected $fillable    = ['cd_ten', 'cd_taoMoi', 'cd_capNhat', 'cd_trangThai'];
-    protected $guard       = ['cd_ma'];
+    protected $guarded       = ['cd_ma'];
 
     protected $primaryKey  = 'cd_ma';
 
