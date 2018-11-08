@@ -48,3 +48,5 @@ Route::get('/danhsachchude',function(){
 Route::get('/admin/danhsachloai', 'LoaiController@index')->name('danhsachloai.index');
 
 Route::get('/admin/danhsachchude', 'ChuDeController@index')->name('danhsachchude.index');
+
+Route::get('/admin/danhsachsanpham', 'SanPhamController@index')->name('danhsachsanpham.index');

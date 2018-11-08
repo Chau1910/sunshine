@@ -1,3 +1,11 @@
+@extends('backend.layouts.index')
+
+@section('title')
+    Danh sach loai san pham
+@endsection
+
+@section('main-content')
+
 <h2>Danh sach loai san pham</h2>
 
 <table border = "1">
@@ -16,3 +24,4 @@
     @endforeach
     </tbody>
 </table>
+@endsection

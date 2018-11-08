@@ -1,3 +1,11 @@
+@extends('backend.layouts.index')
+
+@section('title')
+    Danh sach chu de san pham
+@endsection
+
+@section('main-content')
+
 
 <h2><span style = "color:red">Chu de san pham</span></h2>
 
@@ -17,3 +25,4 @@
     @endforeach
     </tbody>
 </table>
+@endsection
