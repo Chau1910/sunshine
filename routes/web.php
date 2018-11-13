@@ -46,6 +46,8 @@ Route::get('/danhsachchude',function(){
 
 //tencontroller@action
 Route::get('/admin/danhsachloai', 'LoaiController@index')->name('danhsachloai.index');
+Route::get('/admin/danhsachloai/create', 'LoaiController@create')->name('danhsachloai.create');
+Route::post('/admin/danhsachloai/create', 'LoaiController@store')->name('danhsachloai.store');
 
 Route::get('/admin/danhsachchude', 'ChuDeController@index')->name('danhsachchude.index');
 

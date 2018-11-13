@@ -7,6 +7,7 @@
 @section('main-content')
 
 <h2>Danh sach loai san pham</h2>
+<a href="{{route('danhsachloai.create')}}">Them moi</a>
 
 <table border = "1">
     <thead>

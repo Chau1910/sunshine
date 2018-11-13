@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SanPham;
 
 class SanPhamController extends Controller
 {
@@ -10,7 +11,7 @@ class SanPhamController extends Controller
         //Eloquent Model de lay du lieu
         $ds_sp = SanPham::all();//select * from loai
 
-        return view('danhsachsanpham.index')
-            ->with('danhsachsanpham', $ds_sp);
+        return view('sanpham.index')
+            ->with('ds_sp', $ds_sp);
     } 
 }
