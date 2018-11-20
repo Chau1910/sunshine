@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoaiRequest;
 use App\Loai;
 use Session;
 
@@ -42,7 +43,20 @@ class LoaiController extends Controller
             
     } 
 
-    public function update(Request $request, $id){
+    public function update(LoaiRequest $request, $id){
+        //Rang buoc du lieu
+        //$validator = Validator::make($request->all(),[
+           // 'l_ten' => 'required|unique:loai|max:60',
+          //  'l_taoMoi' => 'required',
+          //  'l_capNhat' => 'required',
+          //  'l_trangThai' => 'required',
+        //]);
+
+        //if ($validator->fails()){
+          //  return redirect(route('danhsachloai.edit', ['id' => $id]))
+            //    ->withErrors($validator)
+            //    ->withInput();
+//}
         //cap nhat du lieu
         $loai = Loai::where("l_ma", $id)->first();
         $loai->l_ten        = $request->l_ten;

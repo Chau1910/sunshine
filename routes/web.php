@@ -55,3 +55,6 @@ Route::delete('/admin/danhsachloai/{id}', 'LoaiController@destroy')->name('danhs
 Route::get('/admin/danhsachchude', 'ChuDeController@index')->name('danhsachchude.index');
 
 Route::get('/admin/danhsachsanpham', 'SanPhamController@index')->name('danhsachsanpham.index');
+
+//route san pham
+Route::resource('/admin/danhsachsanpham', 'SanPhamController');

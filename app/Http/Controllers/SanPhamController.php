@@ -14,4 +14,13 @@ class SanPhamController extends Controller
         return view('sanpham.index')
             ->with('ds_sp', $ds_sp);
     } 
+    public function create(){
+        $ds_loai = Loai::all();
+
+        return view('sanpham.create')
+            ->with('danhsachloai', $ds_loai);
+    }
+    public function store(Request $request){
+        
+    }
 }
