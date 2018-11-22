@@ -12,15 +12,24 @@
     <thead>
         <tr>
             <th>Ma</th>
-            <th>Ten loai</th>
+            <th>Ten </th>
+            <th>Hinh anh</th>
+            <th>Thuoc loai</th>
+            <th>Sua</th>
+            <th>Xoa</th>
+          
         </tr>
     </thead>
     <tbody>
     @foreach($ds_sp as $sp)
-    <tr>
-    <td>{{ $sp->sp_ma }}</td>
-    <td>{{ $sp->sp_ten }}</td>
-    </tr>
+        <tr>
+            <td>{{ $sp->sp_ma }}</td>
+            <td>{{ $sp->sp_ten }}</td>
+            <td><img src="{{ asset('storage/photos/' .$sp->sp_hinh) }}" class="img-list" /></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
     @endforeach
     </tbody>
 </table>

@@ -27,8 +27,7 @@
     <select name="l_trangThai">
         <option value="1">Khoa</option>
         <option value="2">Kha dung</option>
-    </select>
-        
+    </select>        
 </div>
 <button type="submit" class="btn btn-primary">Add</button>     
 </form>                      
