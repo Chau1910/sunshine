@@ -7,7 +7,7 @@
 @section('main-content')
 
 <h2>Danh sach san pham</h2>
-
+<a href="{{route('danhsachsanpham.create')}}">Them moi</a>
 <table border = "1">
     <thead>
         <tr>
@@ -15,8 +15,8 @@
             <th>Ten </th>
             <th>Hinh anh</th>
             <th>Thuoc loai</th>
-            <th>Sua</th>
-            <th>Xoa</th>
+            <th>Edit</th>
+            <th></th>
           
         </tr>
     </thead>
@@ -26,8 +26,16 @@
             <td>{{ $sp->sp_ma }}</td>
             <td>{{ $sp->sp_ten }}</td>
             <td><img src="{{ asset('storage/photos/' .$sp->sp_hinh) }}" class="img-list" /></td>
-            <td></td>
-            <td></td>
+            <td>{{ $sp->danhsachloai->l_ten }}</td>
+            <td>
+                <a href="{{ route('danhsachsanpham.edit', ['id' => $sp->sp_ma]) }}"
+                class ="btn btn-primary pull-left">Sua</a>
+                <form method = "post" action="{{ route('danhsachsanpham.destroy', ['id' => $sp->sp_ma]) }}" class="pull-left">
+                <input type="hidden" name="_method" value="DELETE"/>
+                {{ csrf_field() }}
+                <button type="submit" class="btn btn-danger">Xoa</button>
+                </form>
+            </td>
             <td></td>
         </tr>
     @endforeach
