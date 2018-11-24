@@ -49,7 +49,7 @@ class SanPhamController extends Controller
             $sp->sp_hinh = $file->getClientOriginalName();
 
             //Chep file vao thu muc "photos"
-            $file->storeAs('photos', $file->getClientOriginalName());
+            $file->storeAs('public/photos', $file->getClientOriginalName());
         }
 
         $sp->save();
