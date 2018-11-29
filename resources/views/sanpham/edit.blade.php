@@ -41,52 +41,59 @@
 
     <div class="form-group">
         <label for="sp_ten">Ten san pham</label>
-            <input type="text" class="form-control" id="sp_ten" name="sp_ten" value="{{ $sp->sp_ten }}">
+            <input type="text" class="form-control" id="sp_ten" name="sp_ten" value="{{ old('sp_ten', $sp->sp_ten) }}">
     </div>  
 
     <div class="form-group">
         <label for="sp_giaGoc">Gia goc</label>
-            <input type="text" class="form-control" id="sp_giaGoc" name="sp_giaGoc" value="{{ $sp->sp_giaGoc }}">
+            <input type="text" class="form-control" id="sp_giaGoc" name="sp_giaGoc" value="{{ old('sp_giaGoc', $sp->sp_giaGoc) }}">
     </div>
 
     <div class="form-group">
         <label for="sp_giaBan">Gia ban</label>
-            <input type="text" class="form-control" id="sp_giaBan" name="sp_giaBan" value="{{ $sp->sp_giaBan }}">
+            <input type="text" class="form-control" id="sp_giaBan" name="sp_giaBan" value="{{ old('sp_giaBan', $sp->sp_giaBan) }}">
     </div>
 
     <div class="form-group">
         <div class="file-loading">
             <label for="sp_hinh">Hinh dai dien</label>
-                <input type="file" name="sp_hinh" id="sp_hinh" value="{{ $sp->sp_hinh }}">
+                <input type="file" name="sp_hinh" id="sp_hinh">
         </div>
     </div>
 
     <div class="form-group">
         <label for="sp_thongTin">Thong tin</label>
-            <input type="text" class="form-control" id="sp_thongTin" name="sp_thongTin" value="{{ $sp->sp_thongTin }}">
+            <input type="text" class="form-control" id="sp_thongTin" name="sp_thongTin" value="{{ old('sp_thongTin', $sp->sp_thongTin) }}">
     </div>
 
     <div class="form-group">
         <label for="sp_danhGia">Danh gia</label>
-            <input type="text" class="form-control" id="sp_danhGia" name="sp_danhGia" value="{{ $sp->sp_danhGia }}">
+            <input type="text" class="form-control" id="sp_danhGia" name="sp_danhGia" value="{{ old('sp_danhGia', $sp->sp_danhGia) }}">
     </div>
 
     <div class="form-group">
         <label for="sp_taoMoi">Ngay tao moi</label>
-            <input type="text" class="form-control" id="sp_taoMoi" name="sp_taoMoi" value="{{ $sp->sp_taoMoi }}">
+            <input type="text" class="form-control" id="sp_taoMoi" name="sp_taoMoi" value="{{ old('sp_taoMoi', $sp->sp_taoMoi) }}">
     </div>
 
     <div class="form-group">
         <label for="sp_capNhat">Ngay cap nhat</label>
-            <input type="text" class="form-control" id="sp_capNhat" name="sp_capNhat" value="{{ $sp->sp_capNhat }}">
+            <input type="text" class="form-control" id="sp_capNhat" name="sp_capNhat" value="{{ old('sp_capNhat', $sp->sp_capNhat) }}">
     </div>
 
     <div class="form-group">
         <label for="sp_trangThai">Trang thai</label>
             <select name="sp_trangThai">
-                <option value="1" {{ $sp->sp_trangThai == 1 ? "selected" : ""}} >Khoa</option>
-                <option value="2" {{ $sp->sp_trangThai == 2 ? "selected" : ""}}>Kha dung</option>
+                <option value="1" {{  old('sp_trangThai', $sp->sp_trangThai) == 1 ? "selected" : ""}} >Khoa</option>
+                <option value="2" {{ old('sp_trangThai', $sp->sp_trangThai) == 2 ? "selected" : ""}}>Kha dung</option>
             </select>
+    </div>
+
+    <div class="form-group">
+        <div class="file-loading">
+            <label>Hình ảnh liên quan sản phẩm</label>
+            <input id="sp_hinhanhlienquan" type="file" name="sp_hinhanhlienquan[]" multiple>
+        </div>
     </div>
 
     <button type="submit" class="btn btn-primary">Luu</button>     
@@ -118,6 +125,37 @@
             initialPreviewConfig: [
                 {caption: "{{ $sp->sp_hinh }}", size: {{ Storage::size('public/photos/' . 
                 $sp->sp_hinh )}}, width: "120px", url: "{$url}", key: 1},
+            ]
+        });
+        $("#sp_hinhanhlienquan").fileinput({
+            theme: 'fas',
+            showUpload: false,
+            showCaption: false,
+            browseClass: "btn btn-primary btn-lg",
+            fileType: "any",
+            append: false,
+            showRemove: false,
+            autoReplace: true,
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            overwriteInitial: false,
+            allowedFileExtensions: ["jpg", "gif", "png", "txt"],
+            initialPreviewShowDelete: false,
+            initialPreviewAsData: true,
+            initialPreview: [
+                @foreach($sp->hinhanhlienquan()->get() as $hinhAnh)
+                "{{ asset('storage/photos/' . $hinhAnh->ha_ten) }}",
+                @endforeach
+            ],
+            initialPreviewConfig: [
+                @foreach($sp->hinhanhlienquan()->get() as $index=>$hinhAnh)
+                {
+                    caption: "{{ $hinhAnh->ha_ten }}", 
+                    size: {{ Storage::exists('public/photos/' . $hinhAnh->ha_ten) ? Storage::size('public/photos/' . $hinhAnh->ha_ten) : 0 }}, 
+                    width: "120px", 
+                    url: "{$url}", 
+                    key: {{ ($index + 1) }}
+                },
+                @endforeach
             ]
         });
     });

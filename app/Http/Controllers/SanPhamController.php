@@ -7,6 +7,7 @@ use App\SanPham;
 use App\Loai;
 use Session;
 use Storage;
+use App\Http\Controllers\Hinhanh;
 
 class SanPhamController extends Controller
 {
@@ -58,6 +59,23 @@ class SanPhamController extends Controller
 
         $sp->save();
 
+        //Luu hinh anh lien quan
+        if($request->hasFile('sp_hinhanhlienquan')){
+            $files = $request->sp_hinhanhlienquan;
+
+            //Duyet tung anh va thuc hien luu
+            foreach($request->sp_hinhanhlienquan as $index=>$file){
+                $file->storeAs('public/photos', $file->getClientOriginalName());
+
+                //Tao doi tuong Hinhanh
+                $hinhAnh = new Hinhanh();
+                $hinhAnh->sp_ma = $sp->sp_ma;
+                $hinhAnh->ha_stt = ($index + 1);
+                $hinhAnh->ha_ten = $file->getClientOriginalName();
+                $hinhAnh->save();
+            }
+        }
+
         Session::flash('alert-info', 'Them moi thanh cong!!!!');
         return redirect()->route('danhsachsanpham.index');
     }
@@ -72,6 +90,11 @@ class SanPhamController extends Controller
     }
 
     public function update(LoaiRequest $request, $id){
+        $validation = $request->validate([
+            'sp_hinh' => 'file|image|mimes:jpeg,png,gif,webp|max:2048',
+            // Cú pháp dùng upload nhiều file
+            'sp_hinhanhlienquan.*' => 'image|mimes:jpeg,png,gif,webp|max:2048'
+        ]);
 
         $sp = SanPham::where("sp_ma", $id)->first();
         $sp->sp_ten = $request->sp_ten;
@@ -97,9 +120,34 @@ class SanPhamController extends Controller
             $fileSaved = $file->storeAs('public/photos', $sp->sp_hinh);
         }
 
+        //Luu hinh anh lien quan
+        if($request->hasFile('sp_hinhanhlienquan')) {
+            // DELETE các dòng liên quan trong table `HinhAnh`
+            foreach($sp->hinhanhlienquan()->get() as $hinhAnh)
+            {
+                // Xóa hình cũ để tránh rác
+                Storage::delete('public/photos/' . $hinhAnh->ha_ten);
+                // Xóa record
+                $hinhAnh->delete();
+            }
+            $files = $request->sp_hinhanhlienquan;
+
+            //Duyet tung anh va thuc hien luu
+            foreach ($request->sp_hinhanhlienquan as $index => $file) {
+            
+                $file->storeAs('public/photos', $file->getClientOriginalName());
+                // Tạo đối tưọng HinhAnh
+                $hinhAnh = new HinhAnh();
+                $hinhAnh->sp_ma = $sp->sp_ma;
+                $hinhAnh->ha_stt = ($index + 1);
+                $hinhAnh->ha_ten = $file->getClientOriginalName();
+                $hinhAnh->save();
+            }
+        }
+
         $sp->save();
 
-        Session::flash('alert-info', 'Them moi thanh cong!!!!');
+        Session::flash('alert-info', 'Cap nhat thanh cong!!!!');
         return redirect()->route('danhsachsanpham.index');
     }
 
@@ -108,6 +156,14 @@ class SanPhamController extends Controller
         $sp = Sanpham::where("sp_ma", $id)->first();
         if(empty($sp) == false)
         {
+            //Delete cac dong lien quan trong table 'HinhAnh'
+            foreach($sp->hinhanhlienquan()->get() as $hinhAnh){
+                //Xoa hinh cu de tranh rac
+                Storage::delete('public/photos/'. $hinhAnh->ha_ten);
+
+                //Xoa record
+                $hinhAnh->delete();
+            }
             //Xoa hinh cu de tranh rac
             Storage::delete('public/photos/' . $sp->sp_hinh);
         }
