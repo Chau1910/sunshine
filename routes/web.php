@@ -57,4 +57,6 @@ Route::get('/admin/danhsachchude', 'ChuDeController@index')->name('danhsachchude
 Route::get('/admin/danhsachsanpham', 'SanPhamController@index')->name('danhsachsanpham.index');
 
 //route san pham
+Route::get('/admin/danhsachsanpham/excel', 'SanPhamController@excel')->name('danhsachsanpham.excel');
+Route::get('/admin/danhsachsanpham/pdf', 'SanPhamController@pdf')->name('danhsachsanpham.pdf');
 Route::resource('/admin/danhsachsanpham', 'SanPhamController');

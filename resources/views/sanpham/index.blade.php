@@ -7,7 +7,12 @@
 @section('main-content')
 
 <h2>Danh sach san pham</h2>
-<a href="{{route('danhsachsanpham.create')}}">Them moi</a>
+<a href="{{route('danhsachsanpham.create')}}" class="btn btn-primary">Them moi</a>
+
+<a href="{{route('danhsachsanpham.excel')}}" class="btn btn-primary">Xuat Excel</a>
+
+<a href="{{route('danhsachsanpham.pdf')}}" class="btn btn-primary">Xuat PDF</a>
+
 <table border = "1">
     <thead>
         <tr>

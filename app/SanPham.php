@@ -25,4 +25,7 @@ class SanPham extends Model
     public function danhsachhinhanh(){
         return $this->hasMany('App\HinhAnh','sp_ma','sp_ma');
     }
+     public function hinhanhlienquan(){
+         return $this->hasMany('App\HinhAnh','sp_ma','sp_ma');
+    }
 }

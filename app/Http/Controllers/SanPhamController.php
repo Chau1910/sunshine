@@ -8,6 +8,10 @@ use App\Loai;
 use Session;
 use Storage;
 use App\Http\Controllers\Hinhanh;
+use App\Exports\SanPhamExport;
+use Maatwebsite\Excel\Facades\Excel as Excel;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 class SanPhamController extends Controller
 {
@@ -89,7 +93,7 @@ class SanPhamController extends Controller
             ->with('danhsachloai', $ds_loai);
     }
 
-    public function update(LoaiRequest $request, $id){
+    public function update(Request $request, $id){
         $validation = $request->validate([
             'sp_hinh' => 'file|image|mimes:jpeg,png,gif,webp|max:2048',
             // Cú pháp dùng upload nhiều file
@@ -173,5 +177,27 @@ class SanPhamController extends Controller
         Session::flash('alert-info', 'Delete Successfully!!');
         return redirect()->route('danhsachsanpham.index');
             
-    } 
+    }
+    
+    public function excel(){
+        return Excel::download(new SanPhamExport, 'danhsachsanpham.xlsx');
+    }
+
+    public function pdf() 
+{
+    $ds_sanpham = Sanpham::all();
+    $ds_loai    = Loai::all();
+    $data = [
+        'danhsachsanpham' => $ds_sanpham,
+        'danhsachloai'    => $ds_loai,
+    ];
+    /* Code dành cho việc debug
+    - Khi debug cần hiển thị view để xem trước khi Export PDF
+    */
+    // return view('sanpham.pdf')
+    //     ->with('danhsachsanpham', $ds_sanpham)
+    //     ->with('danhsachloai', $ds_loai);
+    $pdf = PDF::loadView('sanpham.pdf', $data);
+    return $pdf->download('DanhMucSanPham.pdf');
+}
 }
