@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SanPhamExport;
+use Maatwebsite\Excel\Facades\Excel as Excel;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoaiRequest;
 use App\Loai;
@@ -82,4 +84,21 @@ class LoaiController extends Controller
         return redirect()->route('danhsachloai.index');
             
     } 
+
+    public function excel() 
+{
+    /* Code dành cho việc debug
+    - Khi debug cần hiển thị view để xem trước khi Export Excel
+    */
+    // $ds_sanpham = Sanpham::all();
+    // $ds_loai    = Loai::all();
+    // $data = [
+    //     'danhsachsanpham' => $ds_sanpham,
+    //     'danhsachloai'    => $ds_loai,
+    // ];
+    // return view('sanpham.excel')
+    //     ->with('danhsachsanpham', $ds_sanpham)
+    //     ->with('danhsachloai', $ds_loai);
+    return Excel::download(new LoaiSanPhamExport, 'danhsachloai.xlsx');
+}
 }

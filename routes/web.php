@@ -45,6 +45,7 @@ Route::get('/danhsachchude',function(){
 });
 
 //tencontroller@action
+Route::get('/admin/danhsachloai', 'LoaiController@excel')->name('danhsachloai.excel');
 Route::get('/admin/danhsachloai', 'LoaiController@index')->name('danhsachloai.index');
 Route::get('/admin/danhsachloai/create', 'LoaiController@create')->name('danhsachloai.create');
 Route::post('/admin/danhsachloai/create', 'LoaiController@store')->name('danhsachloai.store');
@@ -59,4 +60,5 @@ Route::get('/admin/danhsachsanpham', 'SanPhamController@index')->name('danhsachs
 //route san pham
 Route::get('/admin/danhsachsanpham/excel', 'SanPhamController@excel')->name('danhsachsanpham.excel');
 Route::get('/admin/danhsachsanpham/pdf', 'SanPhamController@pdf')->name('danhsachsanpham.pdf');
+Route::get('/admin/danhsachsanpham/print', 'SanPhamController@print')->name('danhsachsanpham.print');
 Route::resource('/admin/danhsachsanpham', 'SanPhamController');

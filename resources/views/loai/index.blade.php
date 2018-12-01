@@ -9,6 +9,8 @@
 <h2>{{Session::get('aaaa')}} Danh sach loai san pham</h2>
 <a href="{{route('danhsachloai.create')}}">Them moi</a>
 
+<a href="{{route('danhsachloai.excel')}}" class="btn btn-primary">Excel</a>
+
 <div class="flash-message">
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
         @if(Session::has('alert-' . $msg))
