@@ -62,3 +62,6 @@ Route::get('/admin/danhsachsanpham/excel', 'SanPhamController@excel')->name('dan
 Route::get('/admin/danhsachsanpham/pdf', 'SanPhamController@pdf')->name('danhsachsanpham.pdf');
 Route::get('/admin/danhsachsanpham/print', 'SanPhamController@print')->name('danhsachsanpham.print');
 Route::resource('/admin/danhsachsanpham', 'SanPhamController');
+
+//route Frontend
+Route::get('/', 'FrontendController@index')->name('frontend.home');
