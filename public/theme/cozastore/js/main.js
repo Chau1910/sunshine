@@ -277,6 +277,19 @@
         $('.js-modal1').removeClass('show-modal1');
     });
 
+    /*==================================================================
+[ Show modal ]*/
+$('.js-show-modal').on('click',function(e){
+    e.preventDefault();
+    debugger;
+    var sp_ma = $(this).data('sp-ma');
+    $(`.js-modal-${sp_ma}`).addClass('show-modal1');
+});
+$('.js-hide-modal').on('click',function(){
+    var sp_ma = $(this).data('sp-ma');
+    $(`.js-modal-${sp_ma}`).removeClass('show-modal1');
+});
+
 
 
 })(jQuery);

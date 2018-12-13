@@ -65,3 +65,4 @@ Route::resource('/admin/danhsachsanpham', 'SanPhamController');
 
 //route Frontend
 Route::get('/', 'FrontendController@index')->name('frontend.home');
+Route::get('/san-pham/{id}', 'FrontendController@productDetail')->name('frontend.productDetail');
