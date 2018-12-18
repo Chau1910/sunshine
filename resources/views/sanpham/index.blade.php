@@ -32,7 +32,7 @@
         <tr>
             <td>{{ $sp->sp_ma }}</td>
             <td>{{ $sp->sp_ten }}</td>
-            <td><img src="{{ asset('storage/photos/' .$sp->sp_hinh) }}" class="img-list" width = "400" height="400"/></td>
+            <td><img src="{{ asset('storage/photos/' .$sp->sp_hinh) }}" class="img-list" /></td>
             <td>{{ $sp->danhsachloai->l_ten }}</td>
             <td>
                 <a href="{{ route('danhsachsanpham.edit', ['id' => $sp->sp_ma]) }}"

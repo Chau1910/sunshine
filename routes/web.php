@@ -65,4 +65,15 @@ Route::resource('/admin/danhsachsanpham', 'SanPhamController');
 
 //route Frontend
 Route::get('/', 'FrontendController@index')->name('frontend.home');
+Route::get('/gioi-thieu', 'FrontendController@about')->name('frontend.about');
+Route::get('/lien-he', 'FrontendController@contact')->name('frontend.contact');
+Route::post('/lien-he/goi-loi-nhan', 'FrontendController@sendMailContactForm')->name('frontend.contact.sendMailContactForm');
+
+
+Route::get('/san-pham', 'FrontendController@product')->name('frontend.product');
 Route::get('/san-pham/{id}', 'FrontendController@productDetail')->name('frontend.productDetail');
+Route::get('/gio-hang', 'FrontendController@cart')->name('frontend.cart');
+
+Route::get('/gio-hang', 'FrontendController@cart')->name('frontend.cart');
+Route::post('/dat-hang', 'FrontendController@order')->name('frontend.order');
+Route::get('/dat-hang/hoan-tat', 'FrontendController@orderFinish')->name('frontend.orderFinish');
