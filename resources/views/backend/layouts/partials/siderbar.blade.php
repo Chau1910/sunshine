@@ -27,6 +27,18 @@
       <ul class="sidebar-menu" data-widget="tree" data-api="tree">
         <li class="header">Danh mục</li>
         
+        <!--Dashboard-->
+        <li class="treeview {{ Request::is('admin/') ? 'menu-open' : '' }}">
+          <a href="#"><i class="fa fa-link"></i> <span>Dashboard</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu" style="display: {{ Request::is('admin/') ? 'block' : 'none' }};">
+            <li class="{{ Request::is('admin/') ? 'active' : '' }}"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+          </ul>
+        </li>
+
         <!-- Danh mục Sản phẩm -->
         <li class="treeview {{ Request::is('admin/danhsachsanpham*') ? 'menu-open' : '' }}">
           <a href="#"><i class="fa fa-link"></i> <span>Danh mục sản phẩm</span>

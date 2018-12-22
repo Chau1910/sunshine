@@ -9,6 +9,9 @@ Shop Hoa tươi - Sunshine
 @endsection
 {{-- Thay thế nội dung vào Placeholder `main-content` của view `frontend.layouts.index` --}}
 @section('main-content')
+<div class="container text-center">
+    <h3>{{ __('sunshine.welcome') }}</h3><br/>
+</div>
 <!-- Slider -->
 @include('frontend.widgets.homepage-slider')
 <!-- Banner -->
