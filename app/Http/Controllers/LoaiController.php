@@ -23,7 +23,9 @@ class LoaiController extends Controller
         //Them moi du lieu
         
         return view('loai.create');
-            
+
+        Session::flash('alert-info', 'Them moi thanh cong!!!!');
+        
     } 
 
     public function store(Request $request){
@@ -35,6 +37,8 @@ class LoaiController extends Controller
         $loai->l_trangThai  = $request->l_trangThai;
         
         $loai->save();
+        Session::flash('alert-info', 'Them moi thanh cong!!!!');
+        return redirect()->route('danhsachloai.index');
 
     } 
 
@@ -46,19 +50,7 @@ class LoaiController extends Controller
     } 
 
     public function update(LoaiRequest $request, $id){
-        //Rang buoc du lieu
-        //$validator = Validator::make($request->all(),[
-           // 'l_ten' => 'required|unique:loai|max:60',
-          //  'l_taoMoi' => 'required',
-          //  'l_capNhat' => 'required',
-          //  'l_trangThai' => 'required',
-        //]);
-
-        //if ($validator->fails()){
-          //  return redirect(route('danhsachloai.edit', ['id' => $id]))
-            //    ->withErrors($validator)
-            //    ->withInput();
-//}
+   
         //cap nhat du lieu
         $loai = Loai::where("l_ma", $id)->first();
         $loai->l_ten        = $request->l_ten;
@@ -85,20 +77,5 @@ class LoaiController extends Controller
             
     } 
 
-    public function excel() 
-{
-    /* Code dành cho việc debug
-    - Khi debug cần hiển thị view để xem trước khi Export Excel
-    */
-    // $ds_sanpham = Sanpham::all();
-    // $ds_loai    = Loai::all();
-    // $data = [
-    //     'danhsachsanpham' => $ds_sanpham,
-    //     'danhsachloai'    => $ds_loai,
-    // ];
-    // return view('sanpham.excel')
-    //     ->with('danhsachsanpham', $ds_sanpham)
-    //     ->with('danhsachloai', $ds_loai);
-    return Excel::download(new LoaiSanPhamExport, 'danhsachloai.xlsx');
-}
+   
 }

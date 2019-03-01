@@ -15,45 +15,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*
+
 use App\Loai;
 
 Route::get('/danhsachloai',function(){
     //Eloquent Model de lay du lieu
-    //$ds_loai = Loai::all(); //select * from loai
-    //$json = json_encode($ds_loai);
-    //return $json;
+    $ds_loai = Loai::all(); //select * from loai
+    $json = json_encode($ds_loai);
+    return $json;
 
     //Query Builder
     $ds_loai = DB::table('loai')->get();
     $json = json_encode($ds_loai);
     return $json;
 });
-*/
-use App\ChuDe;
 
-Route::get('/danhsachchude',function(){
-    //$ds_cd = ChuDe::all();
-    //$json = json_encode($ds_cd);
-    //return $json;
-
-    //Query Builder
-    $ds_cd = DB::table('chude')->get();
-    $json = json_encode($ds_cd);
-    return $json;
-
-});
 
 //tencontroller@action
-Route::get('/admin/danhsachloai', 'LoaiController@excel')->name('danhsachloai.excel');
 Route::get('/admin/danhsachloai', 'LoaiController@index')->name('danhsachloai.index');
 Route::get('/admin/danhsachloai/create', 'LoaiController@create')->name('danhsachloai.create');
 Route::post('/admin/danhsachloai/create', 'LoaiController@store')->name('danhsachloai.store');
 Route::get('/admin/danhsachloai/{id}', 'LoaiController@edit')->name('danhsachloai.edit');
 Route::put('/admin/danhsachloai/{id}', 'LoaiController@update')->name('danhsachloai.update');
 Route::delete('/admin/danhsachloai/{id}', 'LoaiController@destroy')->name('danhsachloai.destroy');
-
-Route::get('/admin/danhsachchude', 'ChuDeController@index')->name('danhsachchude.index');
 
 Route::get('/admin/danhsachsanpham', 'SanPhamController@index')->name('danhsachsanpham.index');
 
@@ -62,6 +46,14 @@ Route::get('/admin/danhsachsanpham/excel', 'SanPhamController@excel')->name('dan
 Route::get('/admin/danhsachsanpham/pdf', 'SanPhamController@pdf')->name('danhsachsanpham.pdf');
 Route::get('/admin/danhsachsanpham/print', 'SanPhamController@print')->name('danhsachsanpham.print');
 Route::resource('/admin/danhsachsanpham', 'SanPhamController');
+
+//route nha cung cap
+Route::get('/admin/danhsachnhacungcap', 'NhacungcapController@index')->name('danhsachnhacungcap.index');
+Route::get('/admin/danhsachnhacungcap/create', 'NhacungcapController@create')->name('danhsachnhacungcap.create');
+Route::post('/admin/danhsachnhacungcap/create', 'NhacungcapController@store')->name('danhsachnhacungcap.store');
+Route::get('/admin/danhsachnhacungcap/{id}', 'NhacungcapController@edit')->name('danhsachnhacungcap.edit');
+Route::put('/admin/danhsachnhacungcap/{id}', 'NhacungcapController@update')->name('danhsachnhacungcap.update');
+Route::delete('/admin/danhsachnhacungcap/{id}', 'NhacungcapController@destroy')->name('danhsachnhacungcap.destroy');
 
 //route Frontend
 Route::get('/', 'FrontendController@index')->name('frontend.home');

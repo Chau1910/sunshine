@@ -14,22 +14,12 @@ class CreateLoaiTable extends Migration
     public function up()
     {
         Schema::create('loai', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->unsignedTinyInteger('l_ma')
-                ->autoIncrement()
-                ->comment(' Ma loai san pham');
-            $table->String('l_ten',50)
-                ->comment('Ten loai san pham');
-            $table->timestamp('l_taoMoi')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('Thoi diem bat dau tao loai san pham');
-            $table->timestamp('l_capNhat')
-                ->default(DB::raw('CURRENT_TIMESTAMP'))
-                ->comment('Thoi diem cap nhat loai san pham gan nhat');
-            $table->unsignedTinyInteger('l_trangThai')
-                ->default('2')
-                ->comment('Trang thai loai: 1-Khoa, 2-Kha dung');
-
+            $table->increments('l_ma');
+            $table->string('l_ten', 128)->comment('Tên loại # Tên loại sản phẩm');
+            $table->timestamp('l_taoMoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo loại sản phẩm');
+            $table->timestamp('l_capNhat')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật loại sản phẩm gần nhất');
+            $table->tinyInteger('l_trangThai')->default('2')->comment('Trạng thái # Trạng thái loại sản phẩm: 1-khóa, 2-khả dụng');
+            
             $table->unique(['l_ten']);
         });
     }

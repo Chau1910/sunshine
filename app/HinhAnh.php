@@ -9,10 +9,10 @@ class HinhAnh extends Model
     public $timestamp = false;
 
     protected $table       = 'hinhanh';
-    protected $fillable    = ['ha_ten', 'sp_ma'];
-    protected $guarded       = ['ha_stt'];
+    protected $fillable    = ['h_ten', 'sp_ma'];
+    protected $guarded       = ['h_stt'];
 
-    protected $primaryKey  = ['sp_ma, hs_stt'];
+    protected $primaryKey  = ['sp_ma, h_stt'];
     public $incrementing = false;
 
     public function hinhsanpham(){

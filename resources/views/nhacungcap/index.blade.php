@@ -1,13 +1,13 @@
 @extends('backend.layouts.index')
 
 @section('title')
-    Danh sach loai san pham
+    Danh sach nha cung cap
 @endsection
 
 @section('main-content')
 
-<h2>{{Session::get('aaaa')}} Danh sach loai san pham</h2>
-<a href="{{route('danhsachloai.create')}}" class="btn btn-primary">Them moi</a> 
+<h2>{{Session::get('aaaa')}} Danh sach nha cung cap</h2>
+<a href="{{ route('danhsachnhacungcap.create') }}" class="btn btn-primary">Them moi</a> 
 <br></br>
 <div class="flash-message">
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -22,19 +22,19 @@
     <thead>
         <tr>
             <th>Ma</th>
-            <th>Ten loai</th>
+            <th>Ten nha cung cap</th>
             <th>Sua</th>
             <th>Xoa</th>
         </tr>
     </thead>
     <tbody>
-    @foreach($danhsachloai as $loai)
+    @foreach($danhsachnhacungcap as $ncc)
     <tr>
-    <td>{{ $loai->l_ma }}</td>
-    <td>{{ $loai->l_ten }}</td>
-    <td><a href="{{ route('danhsachloai.edit', ['id' => $loai->l_ma]) }}"> <button type="submit" class = "btn btn-danger">Edit</button></a></td>
+    <td>{{ $ncc->ncc_ma }}</td>
+    <td>{{ $ncc->ncc_ten }}</td>
+    <td><a href="{{ route('danhsachnhacungcap.edit', ['id' => $ncc->ncc_ma]) }}"> <button type="submit" class = "btn btn-danger">Edit</button></a></td>
     <td>
-        <form method="post" action="{{ route('danhsachloai.destroy', ['id' => $loai->l_ma]) }}">
+        <form method="post" action="{{ route('danhsachnhacungcap.destroy', ['id' => $ncc->ncc_ma]) }}">
             <input type="hidden" name="_method" value="DELETE"/>
             {{ csrf_field() }}
             <button type="submit" class = "btn btn-danger">Xoa</button>

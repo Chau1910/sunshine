@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDonHangsTable extends Migration
+class CreateThanhtoanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateDonHangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('don_hangs', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        Schema::create('thanhtoan', function (Blueprint $table) {
+            $table->increments('tt_ma');
+            $table->string('tt_ten', 200)->comment('Tên phương thức # Tên phương thức thanh toán');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateDonHangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('don_hangs');
+        Schema::dropIfExists('thanhtoan');
     }
 }

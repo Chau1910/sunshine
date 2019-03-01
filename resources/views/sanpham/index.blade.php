@@ -20,6 +20,11 @@
         <tr>
             <th>Ma</th>
             <th>Ten </th>
+            <th>Gia goc</th>
+            <th>Gia ban</th>
+            <th>Size</th>
+            <th>So luong ban dau</th>
+            <th>So luong hien tai</th>
             <th>Hinh anh</th>
             <th>Thuoc loai</th>
             <th>Edit</th>
@@ -32,7 +37,12 @@
         <tr>
             <td>{{ $sp->sp_ma }}</td>
             <td>{{ $sp->sp_ten }}</td>
-            <td><img src="{{ asset('storage/photos/' .$sp->sp_hinh) }}" class="img-list" /></td>
+            <td>{{ $sp->sp_giaGoc }}</td>
+            <td>{{ $sp->sp_giaBan }}</td>
+            <td>{{ $sp->sp_size }}</td>
+            <td>{{ $sp->sp_soLuongBanDau }}</td>
+            <td>{{ $sp->sp_soLuongHienTai }}</td>
+            <td><img src="{{ asset('storage/photos/' .$sp->sp_anhDaiDien) }}" class="img-list" /></td>
             <td>{{ $sp->danhsachloai->l_ten }}</td>
             <td>
                 <a href="{{ route('danhsachsanpham.edit', ['id' => $sp->sp_ma]) }}"

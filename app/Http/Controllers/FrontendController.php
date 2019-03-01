@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Loai;
+use App\Nhacungcap;
 use App\Mau;
 use App\SanPham;
 use DB;
@@ -246,6 +247,11 @@ public function product(Request $request)
         ->with('danhsachhinhanhlienquan', $danhsachhinhanhlienquan)
         ->with('danhsachmau', $danhsachmau)
         ->with('danhsachloai', $danhsachloai);
+}
+
+public function nhacungcap(Request $request)
+{
+    $danhsachnhacungcap = Nhacungcap::all();
 }
 
 }

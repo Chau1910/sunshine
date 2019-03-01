@@ -27,6 +27,7 @@
 
 <form  method="post" action="{{ route('danhsachsanpham.store') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
+
     <div class="form-group">
         <label for="l_ma">Loai san pham</label>
         <select name="l_ma">
@@ -56,21 +57,25 @@
     </div>
 
     <div class="form-group">
+        <label for="sp_size">Size</label>
+            <input type="text" class="form-control" id="sp_size" name="sp_size" placeholder="Nhap size san pham" value="{{ old('sp_size') }}">
+    </div>
+
+    <div class="form-group">
+        <label for="sp_soLuongBanDau">Số lượng ban đầu</label>
+            <input type="text" class="form-control" id="sp_soLuongBanDau" name="sp_soLuongBanDau" placeholder="Nhap so luong san pham ban dau" value="{{ old('sp_soLuongBanDau') }}">
+    </div>
+    
+    <div class="form-group">
+        <label for="sp_soLuongHienTai">Số lượng hiện tại</label>
+            <input type="text" class="form-control" id="sp_soLuongHienTai" name="sp_soLuongHienTai" placeholder="Nhap so luong san pham hien tai" value="{{ old('sp_soLuongHienTai') }}">
+    </div>
+
+    <div class="form-group">
         <div class="file-loading">
-            <label for="sp_hinh">Hinh dai dien</label>
-                <input type="file" name="sp_hinh" id="sp_hinh">
+            <label for="sp_anhDaiDien">Hinh dai dien</label>
+                <input type="file" name="sp_anhDaiDien" id="sp_anhDaiDien">
         </div>
-    </div>
-
-
-    <div class="form-group">
-        <label for="sp_thongTin">Thong tin</label>
-            <input type="text" class="form-control" id="sp_thongTin" name="sp_thongTin" placeholder="Thong tin san pham" value="{{ old('sp_thongTin') }}">
-    </div>
-
-    <div class="form-group">
-        <label for="sp_danhGia">Danh gia</label>
-            <input type="text" class="form-control" id="sp_danhGia" name="sp_danhGia" placeholder="Danh gia san pham" value="{{ old('sp_danhGia') }}">
     </div>
 
     <div class="form-group">
@@ -91,13 +96,6 @@
             </select>
     </div>
 
-    <div class="form-group">
-        <div class="file-loading">
-            <label for="sp_hinh">Hinh lien quan san pham</label>
-                <input type="file" name="sp_hinhanhlienquan[]" id="sp_hinhanhlienquan" multiple>
-        </div>
-    </div>
-
     <button type="submit" class="btn btn-primary">Add</button>     
 </form>                      
 @endsection
@@ -112,7 +110,7 @@
 
 <script>
     $(document).ready(function() {
-        $("#sp_hinh").fileinput({
+        $("#sp_anhDaiDien").fileinput({
             theme: 'fas',
             showUpload: false,
             showCaption: false,
@@ -121,18 +119,6 @@
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
             overwriteInitial: false
             
-        });
-
-        $("#sp_hinhanhlienquan").fileinput({
-            theme: 'fas',
-            showUpload: false,
-            showCaption: false,
-            browseClass: "btn btn-primary btn-lg",
-            filetype: "any",
-            previewFileIcon: false,
-
-            overwriteInitial: false,
-            allowedFileExtensions: ["jpg", "gif", "png", "txt"]
         });
     });
 </script>

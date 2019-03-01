@@ -8,7 +8,7 @@
 
 <h2>Them moi loai san pham</h2>
 
-<form id="frmThemMoiLoaiSanPham" method="post" action="{{ route('danhsachloai.store') }}">
+<form id="frmThemMoiLoaiSanPham" method="post" action="{{ route('danhsachloai.store') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
 <div class="form-group">
     <label for="l_ten">Nhap ten loai</label>

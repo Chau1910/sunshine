@@ -14,20 +14,11 @@ class CreateHinhanhTable extends Migration
     public function up()
     {
         Schema::create('hinhanh', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-
-            $table->unsignedBigInteger('sp_ma')
-                ->comment('Ma san pham');
-            $table->unsignedInteger('ha_stt')
-                ->default('1');
-            $table->string('ha_ten',150)
-                ->comment('Ten hinh anh');
+            $table->increments('h_ma');
+            $table->string('h_ten', 150)->comment('Tên hình ảnh # Tên hình ảnh (không bao gồm đường dẫn)');
+            $table->unsignedInteger('sp_ma')->comment('Sản phẩm # sp_ma # sp_ten # Mã sản phẩm');
             
-            $table->foreign('sp_ma')
-                ->references('sp_ma')
-                ->on('sanpham');
-            
-            $table->primary(['ha_stt', 'sp_ma']);
+            $table->foreign('sp_ma')->references('sp_ma')->on('sanpham');
         });
     }
 
